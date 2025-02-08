@@ -1,5 +1,4 @@
 "use client";
-import { DataTable } from "@/components/DataTable";
 import { ColumnDef } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import PageTitle from "@/components/PageTitle";
@@ -18,6 +17,7 @@ import {
 } from '@/components/ui/dialog';
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { DataTable } from "@/components/DataTable";
 
 const personSchema = z.object({
   id: z.string().uuid(),
@@ -82,11 +82,6 @@ export default function Home() {
   function handleEditPerson(person: Person) {
     router.push(`/edit/${person.id}`);
   }
-
-  const handleSearch = (term: string) => {
-    setSearchTerm(term);
-    setPage(1); // Reset para primeira página quando pesquisar
-  };
 
   const columns: ColumnDef<Person>[] = [
     {
@@ -190,14 +185,13 @@ export default function Home() {
     <div className="flex flex-col gap-5 w-full">
       <PageTitle title="Pessoas" />
       
-      <DataTable 
+      <DataTable
         columns={columns} 
         data={data} 
         totalCount={totalCount}
         page={page}
         perPage={perPage}
         onPageChange={setPage}
-        onSearch={handleSearch}
       />
 
       <Dialog open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
