@@ -1,6 +1,7 @@
 # Alymente Frontend
 
 Interface web moderna desenvolvida com Next.js e React para gerenciamento de pessoas.
+  <img src=".github/preview.png" alt="Preview do projeto" width="100%" />
 
 ## 🚀 Tecnologias
 
